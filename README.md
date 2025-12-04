@@ -1,47 +1,50 @@
 # Todo App
 
-A simple, beautiful todo app built with Next.js, TypeScript, and Material-UI (MUI).
+A todo application built with Next.js, TypeScript, and Material-UI.
 
 ## Features
 
-- ✅ Add new todos
-- ✅ Mark todos as complete/incomplete
-- ✅ Delete todos
-- ✅ Track remaining tasks
-- 🎨 Beautiful Material-UI design
+- Add todos
+- Mark todos as complete or incomplete
+- Delete todos
+- View task count
 
-## Getting Started
+## Setup
 
-First, install the dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-Then, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the app.
+The application runs at http://localhost:3000.
 
 ## Tech Stack
 
-- **Next.js 14** - React framework
-- **TypeScript** - Type safety
-- **Material-UI (MUI)** - UI components and styling
-- **React** - UI library
+- Next.js 15
+- TypeScript
+- Material-UI
+- React
 
 ## Project Structure
 
 ```
-├── app/
-│   ├── layout.tsx       # Root layout with theme provider
-│   ├── page.tsx         # Main todo app page
-│   ├── theme.ts         # MUI theme configuration
-│   └── ThemeRegistry.tsx # Client-side theme provider
-├── package.json
-├── tsconfig.json
-└── next.config.js
+app/
+├── components/
+│   ├── TodoInput.tsx
+│   └── TodoItem.tsx
+├── hooks/
+│   └── useTodos.ts
+├── types/
+│   └── todo.ts
+├── layout.tsx
+├── page.tsx
+├── theme.ts
+└── ThemeRegistry.tsx
 ```
