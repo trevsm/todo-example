@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, KeyboardEvent } from "react";
-import { Box, TextField, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Plus } from "lucide-react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 interface TodoInputProps {
   onAdd: (text: string) => boolean;
@@ -24,36 +25,21 @@ export function TodoInput({ onAdd }: TodoInputProps) {
   };
 
   return (
-    <Box sx={{ display: "flex", gap: 1.5 }}>
-      <TextField
-        fullWidth
-        label="Add a new todo"
-        variant="outlined"
+    <div className="flex gap-3">
+      <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="What needs to be done?"
-        size="small"
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            borderRadius: "8px",
-          },
-        }}
+        className="flex-1 h-10 rounded-lg"
       />
       <Button
-        variant="contained"
-        color="primary"
         onClick={handleSubmit}
-        startIcon={<AddIcon />}
-        size="small"
-        sx={{
-          minWidth: 100,
-          px: 2,
-          fontWeight: 500,
-        }}
+        className="h-10 px-4 rounded-lg font-medium"
       >
+        <Plus className="mr-2 h-4 w-4" />
         Add
       </Button>
-    </Box>
+    </div>
   );
 }

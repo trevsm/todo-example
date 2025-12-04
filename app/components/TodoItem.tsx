@@ -1,8 +1,9 @@
 "use client";
 
-import { IconButton, Checkbox, Box, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Trash2 } from "lucide-react";
+import { Checkbox } from "./ui/checkbox";
+import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 import type { Todo } from "../types/todo";
 
 interface TodoItemProps {
@@ -13,61 +14,37 @@ interface TodoItemProps {
 
 export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
   return (
-    <StyledTodoItem
-      sx={{
-        backgroundColor: todo.completed
-          ? "action.selected"
-          : "background.paper",
-      }}
+    <div
+      className={cn(
+        "flex items-center gap-3 px-3 py-2 rounded-md border border-border transition-all duration-150",
+        "hover:bg-accent/50 hover:-translate-y-px hover:shadow-md",
+        todo.completed ? "bg-accent/30" : "bg-card"
+      )}
     >
       <Checkbox
         checked={todo.completed}
-        onChange={() => onToggle(todo.id)}
-        color="primary"
-        size="small"
-        sx={{ mr: 0.75 }}
+        onCheckedChange={() => onToggle(todo.id)}
+        className="mr-1"
       />
-      <Typography
-        sx={{
-          flex: 1,
-          textDecoration: todo.completed ? "line-through" : "none",
-          color: todo.completed ? "text.secondary" : "text.primary",
-          fontWeight: todo.completed ? 400 : 500,
-        }}
+      <span
+        className={cn(
+          "flex-1",
+          todo.completed
+            ? "line-through text-muted-foreground"
+            : "text-foreground font-medium"
+        )}
       >
         {todo.text}
-      </Typography>
-      <IconButton
+      </span>
+      <Button
         aria-label="delete"
         onClick={() => onDelete(todo.id)}
-        color="error"
-        size="small"
-        sx={{
-          ml: 1,
-          "&:hover": {
-            backgroundColor: "error.light",
-            color: "white",
-          },
-        }}
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
       >
-        <DeleteIcon fontSize="small" />
-      </IconButton>
-    </StyledTodoItem>
+        <Trash2 className="h-4 w-4" />
+      </Button>
+    </div>
   );
 }
-
-const StyledTodoItem = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(1, 1.5),
-  marginBottom: theme.spacing(0.5),
-  borderRadius: "6px",
-  border: "1px solid",
-  borderColor: theme.palette.divider,
-  transition: "all 0.15s ease",
-  "&:hover": {
-    backgroundColor: theme.palette.action.hover,
-    transform: "translateY(-1px)",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-  },
-}));

@@ -1,23 +1,43 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme matching original MUI theme */
+    --background: 0 0% 96%;
+    --foreground: 0 0% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 18%;
+    --primary: 227 96% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 18%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 227 96% 95%;
+    --accent-foreground: 227 96% 50%;
+    --destructive: 0 100% 61%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 0% / 0.12;
+    --input: 0 0% 0% / 0.12;
+    --ring: 227 96% 60%;
+    --radius: 0.5rem;
+  }
 }
 
-body {
-  background-color: #fcfcfc;
-  transition: background-color 0.3s ease;
-}
-
-body[data-theme="dark"] {
-  background-color: #121212;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    @apply antialiased;
+  }
+  
+  body {
+    @apply bg-background text-foreground min-h-screen;
+  }
 }

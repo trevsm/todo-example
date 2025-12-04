@@ -1,6 +1,5 @@
 "use client";
 
-import { Container, Typography, Box } from "@mui/material";
 import { TodoInput } from "./components/TodoInput";
 import { useTodos } from "./hooks/useTodos";
 import { TodoItem } from "./components/TodoItem";
@@ -10,59 +9,26 @@ export default function Home() {
     useTodos();
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 2, mb: 4 }}>
-      <Typography
-        variant="h4"
-        component="h1"
-        sx={{
-          textAlign: "center",
-          fontWeight: 500,
-          color: "text.primary",
-          mb: 2,
-        }}
-      >
+    <div className="max-w-xl mx-auto mt-8 mb-16 px-4">
+      <h1 className="text-3xl font-medium text-center text-foreground mb-6">
         Todo App
-      </Typography>
+      </h1>
 
       {/* Todo Input */}
-      <Box
-        sx={{
-          mb: 2,
-          p: 2,
-          borderRadius: "8px",
-          backgroundColor: "background.paper",
-          border: "1px solid",
-          borderColor: "divider",
-        }}
-      >
+      <div className="mb-4 p-4 rounded-lg bg-card border border-border shadow-sm">
         <TodoInput onAdd={addTodo} />
-      </Box>
+      </div>
 
       {totalCount === 0 ? (
-        <Box
-          sx={{
-            p: 3,
-            textAlign: "center",
-            borderRadius: "8px",
-            backgroundColor: "background.paper",
-            border: "1px solid",
-            borderColor: "divider",
-          }}
-        >
-          <Typography variant="body2" color="text.secondary" fontWeight={400}>
+        <div className="p-6 text-center rounded-lg bg-card border border-border shadow-sm">
+          <p className="text-sm text-muted-foreground">
             No todos yet. Add one above to get started!
-          </Typography>
-        </Box>
+          </p>
+        </div>
       ) : (
         <>
           {/* Todo List */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 1,
-            }}
-          >
+          <div className="flex flex-col gap-1">
             {todos.map((todo) => (
               <TodoItem
                 key={todo.id}
@@ -71,16 +37,16 @@ export default function Home() {
                 onDelete={deleteTodo}
               />
             ))}
-          </Box>
+          </div>
 
           {/* Todo Stats */}
-          <Box sx={{ mt: 2, textAlign: "center" }}>
-            <Typography variant="body2" color="text.secondary" fontWeight={400}>
+          <div className="mt-4 text-center">
+            <p className="text-sm text-muted-foreground">
               {remainingCount} of {totalCount} tasks remaining
-            </Typography>
-          </Box>
+            </p>
+          </div>
         </>
       )}
-    </Container>
+    </div>
   );
 }
