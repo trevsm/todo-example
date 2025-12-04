@@ -14,34 +14,25 @@ interface TodoItemProps {
 
 export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
   return (
-    <div
-      className={cn(
-        "flex items-center gap-3 px-3 py-2 rounded-md border border-border transition-all duration-150",
-        "hover:bg-accent/50 hover:-translate-y-px hover:shadow-md",
-        todo.completed ? "bg-accent/30" : "bg-card"
-      )}
-    >
+    <div className="flex items-center space-x-4">
       <Checkbox
+        id={`todo-${todo.id}`}
         checked={todo.completed}
         onCheckedChange={() => onToggle(todo.id)}
-        className="mr-1"
       />
-      <span
+      <label
+        htmlFor={`todo-${todo.id}`}
         className={cn(
-          "flex-1",
-          todo.completed
-            ? "line-through text-muted-foreground"
-            : "text-foreground font-medium"
+          "flex-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+          todo.completed && "text-muted-foreground line-through"
         )}
       >
         {todo.text}
-      </span>
+      </label>
       <Button
-        aria-label="delete"
-        onClick={() => onDelete(todo.id)}
         variant="ghost"
         size="icon"
-        className="h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
+        onClick={() => onDelete(todo.id)}
       >
         <Trash2 className="h-4 w-4" />
       </Button>

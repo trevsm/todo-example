@@ -25,18 +25,14 @@ export function TodoInput({ onAdd }: TodoInputProps) {
   };
 
   return (
-    <div className="flex gap-3">
+    <div className="flex w-full items-center space-x-2">
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="What needs to be done?"
-        className="flex-1 h-10 rounded-lg"
       />
-      <Button
-        onClick={handleSubmit}
-        className="h-10 px-4 rounded-lg font-medium"
-      >
+      <Button onClick={handleSubmit}>
         <Plus className="mr-2 h-4 w-4" />
         Add
       </Button>
